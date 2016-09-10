@@ -1,4 +1,6 @@
 #!/bin/bash
+dot="$HOME/dotfiles"
+alias dot="cd $dot"
 source $HOME/dotfiles/osx_bash_profile_private
 export PATH="$HOME/osx-tools/osx_bin:/usr/local/sbin/:/Users/case/.conda/bin:$PATH"
 export PS1="\! [\D{%m/%d/%H:%M:%S}] <\u> "
