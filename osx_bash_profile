@@ -1,4 +1,5 @@
 #!/bin/bash
+alias osx="cd $HOME/osx-tools"
 dot="$HOME/dotfiles"
 alias dot="cd $dot"
 source $HOME/dotfiles/osx_bash_profile_private

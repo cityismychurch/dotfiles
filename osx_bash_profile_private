@@ -1,4 +1,5 @@
 #!/bin/bash
+export HOMEBREW_GITHUB_API_TOKEN="93466ea65275d98ab4d144da7c8eb40eaf1ca621"
 vpn_string='A66D3E8E-06BB-4663-BF8C-C5E1B84311B8'
 flow="summer"
 export MPI_HOSTS=/etc/mpihosts
