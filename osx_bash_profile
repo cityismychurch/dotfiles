@@ -1,9 +1,10 @@
 #!/bin/bash
+export EDITOR=/usr/local/bin/vim
 alias osx="cd $HOME/osx-tools"
 dot="$HOME/dotfiles"
 alias dot="cd $dot"
 source $HOME/dotfiles/osx_bash_profile_private
-export PATH="$HOME/osx-tools/osx_bin:/usr/local/sbin/:/Users/case/.conda/bin:$PATH"
+export PATH="$HOME/bin/private:$HOME/osx-tools/osx_bin:/usr/local/sbin/:/Users/case/.conda/bin:$PATH"
 export PS1="\! [\D{%m/%d/%H:%M:%S}] <\u> "
 export LSCOLORS=Dxfxcxdxbxegedabagacad
 function spotlight_rebuild()
