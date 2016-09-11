@@ -16,7 +16,7 @@ set nowrap
 set mouse=a
 syn on
 set laststatus=2
-source /usr/share/vim/vim73/macros/matchit.vim
+#source /usr/share/vim/vim73/macros/matchit.vim
 source ~/.vim/indent/matlab.vim
 source ~/.vim/ftplugin/matlab.vim
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
