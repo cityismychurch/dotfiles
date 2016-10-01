@@ -1,4 +1,5 @@
 source $HOME/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/plugin/powerline.vim
+set noesckeys
 let g:Powerline_symbols="fancy"
 execute pathogen#infect()
 colo molokai
@@ -16,7 +17,6 @@ set nowrap
 set mouse=a
 syn on
 set laststatus=2
-#source /usr/share/vim/vim73/macros/matchit.vim
 source ~/.vim/indent/matlab.vim
 source ~/.vim/ftplugin/matlab.vim
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
