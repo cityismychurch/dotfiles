@@ -34,3 +34,4 @@ command Wq wq
 command W w
 command Q q
 autocmd BufEnter *.m compiler mlint
+set nocompatible
