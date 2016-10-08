@@ -1,6 +1,7 @@
 #!/bin/bash
 export LD_LIBRARY_PATH="$HOME/opt/lib:LD_LIBRARY_PATH"
 export C_INCLUDE_PATH="$HOME/opt/include"
+export CPLUS_INCLUDE_PATH="$HOME/opt/include"
 export MANPATH="$HOME/opt/doc"
 export PATH="$HOME/opt/bin:$PATH"
 alias condaUpdate="conda update --prefix $HOME/.conda/ anaconda"
