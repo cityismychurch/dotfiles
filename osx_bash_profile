@@ -4,7 +4,7 @@ alias osx="cd $HOME/osx-tools"
 dot="$HOME/dotfiles"
 alias dot="cd $dot"
 source $HOME/dotfiles/osx_bash_profile_private
-export PATH="$HOME/bin/private:$HOME/osx-tools/osx_bin:/usr/local/sbin/:/Users/case/.conda/bin:$PATH"
+export PATH="$HOME/bin/private:$HOME/osx-tools/osx_bin:/usr/local/sbin:/Users/case/.conda/bin:$PATH"
 export PS1="\! [\D{%m/%d/%H:%M:%S}] <\u> "
 export LSCOLORS=Dxfxcxdxbxegedabagacad
 function spotlight_rebuild()
@@ -227,3 +227,4 @@ POSIX path of currFolder
         #   -----------------------------------------------------------
         spotlight () { mdfind "kMDItemDisplayName == '$@'wc"; }
 test -e ${HOME}/.iterm2_shell_integration.bash && source ${HOME}/.iterm2_shell_integration.bash
+iterm2-set-color.sh Wombat
