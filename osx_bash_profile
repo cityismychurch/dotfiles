@@ -1,13 +1,119 @@
 #!/bin/bash
-export MANPATH=$MANPATH:/usr/share/man:/usr/local/texlive/2016/texmf-dit/doc/man:/usr/local/share/man:/usr/local/man
-export EDITOR=/usr/local/bin/vim
-alias osx="cd $HOME/osx-tools"
+#############
+# Variables #
+#############
 dot="$HOME/dotfiles"
-alias dot="cd $dot"
+HISTCONTROL=ignoreboth
+
+###########
+# Linking #
+###########
+source ~/.profile
 source $HOME/dotfiles/osx_bash_profile_private
+
+###########
+# Exports #
+###########
+export BLOCKSIZE=1k
+export EDITOR=/usr/local/bin/vim
+export LSCOLORS=Dxfxcxdxbxegedabagacad
+export MANPATH=$MANPATH:/usr/share/man:/usr/local/texlive/2016/texmf-dit/doc/man:/usr/local/share/man:/usr/local/man
+export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
+        vim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
+            -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
+                -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
 export PATH="$HOME/bin/private:$HOME/osx-tools/osx_bin:/usr/local/sbin:/Users/case/.conda/bin:$PATH"
 export PS1="\! [\D{%m/%d/%H:%M:%S}] <\u> "
-export LSCOLORS=Dxfxcxdxbxegedabagacad
+export PYTHONPATH=$HOME/code/python:$HOME/src/python:$PYTHONPATH
+
+###########
+# Aliases #
+###########
+alias anon='export HISTFILE=/dev/null'
+alias builder='docker run -it -v $HOME/docker:/root cityismychurch/builder'
+alias df="df -h $@"
+alias df='df -h'
+alias dockerinit='$(boot2docker shellinit)'
+alias dockerize='boot2docker start'
+alias dot="cd $dot"
+alias downloads='cd $downloads'
+alias du='du -h'
+alias dud='du -h -d $1'
+alias editosxprofile='vim ~/dotfiles/osx_bash_profile'
+alias editprofile='vim ~/.bash_profile'
+alias ejectusb='diskutil eject `diskutil list | grep external | grep -oE "/dev/disk[0-9]"`'
+alias gpp='g++ $@'
+alias krindent='indent -kr -i8 ${@}'
+alias l='ls -CFhG $@'
+alias la='ls -AhG $@'
+alias library='cd $library'
+alias ll='ls -lhG $@'
+alias lld='ls -lhGt $@'
+alias lldr='ls -lhGtr $@'
+alias ls='ls -hG $@'
+alias lsd='ls -hGt $@'
+alias lsdr='ls -hGtr $@'
+alias lsi='ls *.{png,jpg,jpeg,gif,bmp} 2>/dev/null'
+alias lsv='ls *.{mp4,avi,mkv} 2>/dev/null'
+alias matlab_clean='matlab -nodesktop -nojvm'
+alias matlab_console='matlab -nodesktop'
+alias osx="cd $HOME/osx-tools"
+alias r='reset'
+alias recent='ls -tr "$@"'
+alias reprofile='source ~/.bash_profile'
+alias src='cd $HOME/src'
+alias unpackall="find . -name \"*.tar.gz\" -exec tar xvf {} \;"
+alias vim='/usr/local/bin/vim $@'
+alias vpn-connect="scutil --nc start $vpn_string"
+alias vpn-disconnect="scutil --nc stop $vpn_string"
+alias wcat="watch cat \"${@}\""
+alias xcode='cd $xcodebuild'
+# from http://natelandau.com/my-mac-osx-bash_profile/
+alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
+alias ..='cd ../'                           # Go back 1 directory level
+alias ...='cd ../../'                       # Go back 2 directory levels
+alias .3='cd ../../../'                     # Go back 3 directory levels
+alias .4='cd ../../../../'                  # Go back 4 directory levels
+alias .5='cd ../../../../../'               # Go back 5 directory levels
+alias .6='cd ../../../../../../'            # Go back 6 directory levels
+alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
+alias ~="cd ~"                              # ~:            Go Home
+alias qfind="find . -name "                 # qfind:    Quickly search for file
+extract () {
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2)   tar xjf $1     ;;
+            *.tar.gz)    tar xzf $1     ;;
+            *.bz2)       bunzip2 $1     ;;
+            *.rar)       unrar e $1     ;;
+            *.gz)        gunzip $1      ;;
+            *.tar)       tar xf $1      ;;
+            *.tbz2)      tar xjf $1     ;;
+            *.tgz)       tar xzf $1     ;;
+            *.zip)       unzip $1       ;;
+            *.Z)         uncompress $1  ;;
+            *.7z)        7z x $1        ;;
+            *)     echo "'$1' cannot be extracted via extract()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+spotlight () { mdfind "kMDItemDisplayName == '$@'wc"; }
+
+#####################
+# Terminal Settings #
+#####################
+powerline-daemon -q
+POWERLINE_BASH_CONTINUATION=1
+POWERLINE_BASH_SELECT=1
+. $repository_root/lib/python/site-packages/powerline/bindings/bash/powerline.sh
+test -e ${HOME}/.iterm2_shell_integration.bash && source ${HOME}/.iterm2_shell_integration.bash
+iterm2-set-color.sh Wombat
+
+########################
+# Function Definitions #
+########################
 function spotlight_rebuild()
 {
     sudo mdutil -E $1
@@ -16,36 +122,11 @@ function github()
 {
     git clone git@github.com:$1.git
 }
-alias wcat="watch cat \"${@}\""
-export PYTHONPATH=$HOME/code/python:$HOME/src/python:$PYTHONPATH
-alias df="df -h $@"
-source ~/.profile
-alias unpackall="find . -name \"*.tar.gz\" -exec tar xvf {} \;"
-alias dud='du -h -d $1'
-alias vpn-connect="scutil --nc start $vpn_string"
-alias vpn-disconnect="scutil --nc stop $vpn_string"
-export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
-        vim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
-            -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
-                -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
-alias ejectusb='diskutil eject `diskutil list | grep external | grep -oE "/dev/disk[0-9]"`'
-alias df='df -h'
-alias du='du -h'
 function myupdate
 {
     softwareupdate -i -a
     brew update && brew upgrade
 }
-alias gpp='g++ $@'
-alias vim='/usr/local/bin/vim $@'
-alias anon='export HISTFILE=/dev/null'
-alias r='reset'
-alias lsv='ls *.{mp4,avi,mkv} 2>/dev/null'
-alias lsi='ls *.{png,jpg,jpeg,gif,bmp} 2>/dev/null'
-alias matlab_console='matlab -nodesktop'
-alias matlab_clean='matlab -nodesktop -nojvm'
-HISTCONTROL=ignoreboth
-alias krindent='indent -kr -i8 ${@}'
 function extra_lines
 {
     tmp1="$(mktemp)"
@@ -82,96 +163,52 @@ function remote_root
         shift
     done
 }
-alias dockerize='boot2docker start'
-alias dockerinit='$(boot2docker shellinit)'
-alias builder='docker run -it -v $HOME/docker:/root cityismychurch/builder'
-powerline-daemon -q
-POWERLINE_BASH_CONTINUATION=1
-POWERLINE_BASH_SELECT=1
-. $repository_root/lib/python/site-packages/powerline/bindings/bash/powerline.sh
+# ff:  Find file under the current directory
+ff () { /usr/bin/find . -name "$@" ; }      
+# ffs: Find file whose name starts with a given string
+ffs () { /usr/bin/find . -name "$@"'*' ; }  
+# ffe: Find file whose name ends with a given string
+ffe () { /usr/bin/find . -name '*'"$@" ; }  
+function apl(){ killall afplay >/dev/null; afplay "$1" & }
+function lsfirst(){ ls | grep -i $1 | head -1; }
+function findfirst(){ find . | grep -i $1 | head -1; }
+function findfirstd(){ find $1 | grep -i $2 | head -1; }
+function findnth(){ find . | grep -i $1 | sed "$2q;d" ; }
+function findnthd(){ find $1 | grep -i $2 | sed "$3q;d" ; }
+function m(){ killall afplay >/dev/null; afplay "$(findfirstd $music $1)" & }
+function mm(){ killall afplay >/dev/null; afplay "$(findnthd $music $1 $2)" &}
 function youtube() {
-pushd .
-cd $downloads
-youtube-dl -x --no-check-certificate $1 --audio-format mp3
-popd
+    pushd .
+    cd $downloads
+    youtube-dl -x --no-check-certificate $1 --audio-format mp3
+    popd
 }
 function pid_for_name() {
-#  ps -A | grep -m2 $1 | tail -1 | awk '{print $1}'
-ps -A | grep $1 | awk '{print $1}'
+    ps -A | grep $1 | awk '{print $1}'
 }
 function pause_af {
-kill -17 $(pid_for_name afplay)
+    kill -17 $(pid_for_name afplay)
 }
 function play_af {
-kill -19 $(pid_for_name afplay)
+    kill -19 $(pid_for_name afplay)
 }
-
-function apl(){ killall afplay >/dev/null; afplay "$1" & }
-
-function lsfirst(){ ls | grep -i $1 | head -1; }
-
-function findfirst(){ find . | grep -i $1 | head -1; }
-
-function findfirstd(){ find $1 | grep -i $2 | head -1; }
-
-function findnth(){ find . | grep -i $1 | sed "$2q;d" ; }
-
-function findnthd(){ find $1 | grep -i $2 | sed "$3q;d" ; }
-
-function m(){ killall afplay >/dev/null; afplay "$(findfirstd $music $1)" & }
-
-function mm(){ killall afplay >/dev/null; afplay "$(findnthd $music $1 $2)" &}
-
-function aplsns(){
-IFS=$' ';
-for n in $2; do
-    aplsn $1 $2;
-    wait %1;
-done;
+function aplsns() {
+    IFS=$' ';
+    for n in $2; do
+        aplsn $1 $2;
+        wait %1;
+    done;
 } 
-
-function lsm(){ lsn $music $1; }
-
-function km(){ killall afplay; }
-
-function lsn(){
-IFS=$'\n';
-let i=1;
-for file in `find $1 | grep -i "$2"`; do
-    echo "$i $file $i";
-    let i+=1;
-done;
+function lsm() { lsn $music $1; }
+function km() { killall afplay; }
+function lsn() {
+    IFS=$'\n';
+    let i=1;
+    for file in `find $1 | grep -i "$2"`; do
+        echo "$i $file $i";
+        let i+=1;
+    done;
 }
-
-# aliases
-alias src='cd $HOME/src'
-alias recent='ls -tr "$@"'
-alias xcode='cd $xcodebuild'
-alias library='cd $library'
-alias downloads='cd $downloads'
-alias editprofile='vim ~/.bash_profile'
-alias editosxprofile='vim ~/dotfiles/osx_bash_profile'
-alias reprofile='source ~/.bash_profile'
-alias ls='ls -hG $@'
-alias lsdr='ls -hGtr $@'
-alias lsd='ls -hGt $@'
-alias lldr='ls -lhGtr $@'
-alias lld='ls -lhGt $@'
-alias ll='ls -lhG $@'
-alias la='ls -AhG $@'
-alias l='ls -CFhG $@'
-
-# from http://natelandau.com/my-mac-osx-bash_profile/
-export BLOCKSIZE=1k
-alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
-alias ..='cd ../'                           # Go back 1 directory level
-alias ...='cd ../../'                       # Go back 2 directory levels
-alias .3='cd ../../../'                     # Go back 3 directory levels
-alias .4='cd ../../../../'                  # Go back 4 directory levels
-alias .5='cd ../../../../../'               # Go back 5 directory levels
-alias .6='cd ../../../../../../'            # Go back 6 directory levels
-alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
-alias ~="cd ~"                              # ~:            Go Home
 mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
 trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash
 ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
@@ -181,51 +218,3 @@ ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in Ma
 mans () {
     man $1 | grep -iC2 --color=always $2 | less
 }
-#   cdf:  'Cd's to frontmost window of MacOS Finder
-#   ------------------------------------------------------
-cdf () {
-    currFolderPath=$( /usr/bin/osascript <<EOT
-    tell application "Finder"
-    try
-    set currFolder to (folder of the front window as alias)
-    on error
-    set currFolder to (path to desktop folder as alias)
-end try
-POSIX path of currFolder
-            end tell
-            EOT
-            )
-            echo "cd to \"$currFolderPath\""
-            cd "$currFolderPath"
-        }
-        #   extract:  Extract most know archives with one command
-        #   ---------------------------------------------------------
-        extract () {
-            if [ -f $1 ] ; then
-                case $1 in
-                    *.tar.bz2)   tar xjf $1     ;;
-                    *.tar.gz)    tar xzf $1     ;;
-                    *.bz2)       bunzip2 $1     ;;
-                    *.rar)       unrar e $1     ;;
-                    *.gz)        gunzip $1      ;;
-                    *.tar)       tar xf $1      ;;
-                    *.tbz2)      tar xjf $1     ;;
-                    *.tgz)       tar xzf $1     ;;
-                    *.zip)       unzip $1       ;;
-                    *.Z)         uncompress $1  ;;
-                    *.7z)        7z x $1        ;;
-                    *)     echo "'$1' cannot be extracted via extract()" ;;
-                esac
-            else
-                echo "'$1' is not a valid file"
-            fi
-        }
-        alias qfind="find . -name "                 # qfind:    Quickly search for file
-        ff () { /usr/bin/find . -name "$@" ; }      # ff:       Find file under the current directory
-        ffs () { /usr/bin/find . -name "$@"'*' ; }  # ffs:      Find file whose name starts with a given string
-        ffe () { /usr/bin/find . -name '*'"$@" ; }  # ffe:      Find file whose name ends with a given string
-        #   spotlight: Search for a file using MacOS Spotlight's metadata
-        #   -----------------------------------------------------------
-        spotlight () { mdfind "kMDItemDisplayName == '$@'wc"; }
-test -e ${HOME}/.iterm2_shell_integration.bash && source ${HOME}/.iterm2_shell_integration.bash
-iterm2-set-color.sh Wombat
