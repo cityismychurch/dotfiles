@@ -1,4 +1,5 @@
 #!/bin/bash
+export MANPATH=$MANPATH:/usr/share/man:/usr/local/texlive/2016/texmf-dit/doc/man:/usr/local/share/man:/usr/local/man
 export EDITOR=/usr/local/bin/vim
 alias osx="cd $HOME/osx-tools"
 dot="$HOME/dotfiles"
