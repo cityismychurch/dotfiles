@@ -109,7 +109,7 @@ POWERLINE_BASH_CONTINUATION=1
 POWERLINE_BASH_SELECT=1
 . $repository_root/lib/python/site-packages/powerline/bindings/bash/powerline.sh
 test -e ${HOME}/.iterm2_shell_integration.bash && source ${HOME}/.iterm2_shell_integration.bash
-iterm2-set-color.sh Wombat
+iterm2-set-color.py Wombat
 
 ########################
 # Function Definitions #
