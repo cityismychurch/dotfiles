@@ -20,11 +20,15 @@ export PS1="\! [\D{%m/%d/%H:%M:%S}] <\u> "
 # Function Definitions #
 ########################
 function add() { git add "$@" ; }
+function a() { git add "$@" ; }
 function commit() { git commit -m "$@" ; }
+function c() { git commit -m "$@" ; }
 function dev() { docker run -it $dev_shell ; }
 function gdiff() { git diff "$@" ; }
+function gd() { git diff "$@" ; }
 function json() { pygmentize -l json "$@" ; }
 function push() { git push "$@" ; }
+function p() { git push "$@" ; }
 function shell() { docker run -it $default_shell ; }
 function status() { git status "$@" ; }
 ###########
@@ -44,16 +48,16 @@ alias dot="cd $dot"
 alias du='du -h'
 alias dud='du -h -d $1'
 alias editvimprofile="vim $HOME/.vimrc"
-alias l='ls -CFhG $@'
-alias la='ls -AhG $@'
-alias ll='ls -lhG $@'
-alias lld='ls -lhGt $@'
-alias lldr='ls -lhGtr $@'
-alias ls='ls -hG $@'
-alias lsd='ls -hGt $@'
-alias lsdr='ls -hGtr $@'
-alias lsi='ls *.{png,jpg,jpeg,gif,bmp} 2>/dev/null'
-alias lsv='ls *.{mp4,avi,mkv} 2>/dev/null'
+#alias l='ls -CFhG $@'
+#alias la='ls -AhG $@'
+#alias ll='ls -lhG $@'
+#alias lld='ls -lhGt $@'
+#alias lldr='ls -lhGtr $@'
+#alias ls='ls -hG $@'
+#alias lsd='ls -hGt $@'
+#alias lsdr='ls -hGtr $@'
+#alias lsi='ls *.{png,jpg,jpeg,gif,bmp} 2>/dev/null'
+#alias lsv='ls *.{mp4,avi,mkv} 2>/dev/null'
 alias qfind="find . -name "                 # qfind:    Quickly search for file
 alias recent='ls -tr "$@"'
 alias ~="cd ~"                              # ~:            Go Home
