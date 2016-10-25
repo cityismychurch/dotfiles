@@ -82,6 +82,16 @@ iterm2-set-color.py Argonaut
 ########################
 # Function Definitions #
 ########################
+function l() { exa -l --git -@ $@ ;  }
+function ls() { exa -l --git -@ $@ ;  }
+function la() { exa -a  $@ ;  }
+function ll() { exa -l  $@ ;  }
+function lzr() { exa -l  -s size -r $@ ;  }
+function lz() { exa -l  -s size $@ ;  }
+function ltr() { exa -l  -s modified -r $@ ;  }
+function lt() { exa -l  -s modified $@ ;  }
+function lsai() { -l exa *.{png,jpg,jpeg,gif,bmp} 2>/dev/null ;  }
+function lsav() { -l exa *.{mp4,avi,mkv} 2>/dev/null ;  }
 function spotlight_rebuild()
 {
     sudo mdutil -E $1
