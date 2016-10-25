@@ -24,7 +24,7 @@ function commit() { git commit -m "$@" ; }
 function dev() { docker run -it $dev_shell ; }
 function gdiff() { git diff "$@" ; }
 function json() { pygmentize -l json "$@" ; }
-function psuh() { git push "$@" ; }
+function push() { git push "$@" ; }
 function shell() { docker run -it $default_shell ; }
 function status() { git status "$@" ; }
 ###########
