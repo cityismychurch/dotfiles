@@ -14,52 +14,30 @@ source $HOME/dotfiles/osx_bash_profile_private
 ###########
 # Exports #
 ###########
-export BLOCKSIZE=1k
 export EDITOR=/usr/local/bin/vim
-export LSCOLORS=Dxfxcxdxbxegedabagacad
+#export LSCOLORS=Dxfxcxdxbxegedabagacad
 export MANPATH=$MANPATH:/usr/share/man:/usr/local/texlive/2016/texmf-dit/doc/man:/usr/local/share/man:/usr/local/man
-export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
-        vim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
-            -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
-                -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
+#export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
+#        vim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
+#            -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
+#                -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
 export PATH="$HOME/bin/private:$HOME/osx-tools/osx_bin:/usr/local/sbin:/Users/case/.conda/bin:$PATH"
-export PS1="\! [\D{%m/%d/%H:%M:%S}] <\u> "
 export PYTHONPATH=$HOME/code/python:$HOME/src/python:$PYTHONPATH
 
 ###########
 # Aliases #
 ###########
-alias anon='export HISTFILE=/dev/null'
-alias builder='docker run -it -v $HOME/docker:/root cityismychurch/builder'
-alias df="df -h $@"
-alias df='df -h'
-alias dockerinit='$(boot2docker shellinit)'
-alias dockerize='boot2docker start'
-alias dot="cd $dot"
 alias downloads='cd $downloads'
-alias du='du -h'
-alias dud='du -h -d $1'
 alias editosxprofile='vim ~/dotfiles/osx_bash_profile'
 alias editprofile='vim ~/.bash_profile'
 alias ejectusb='diskutil eject `diskutil list | grep external | grep -oE "/dev/disk[0-9]"`'
 alias gpp='g++ $@'
 alias krindent='indent -kr -i8 ${@}'
-alias l='ls -CFhG $@'
-alias la='ls -AhG $@'
 alias library='cd $library'
-alias ll='ls -lhG $@'
-alias lld='ls -lhGt $@'
-alias lldr='ls -lhGtr $@'
-alias ls='ls -hG $@'
-alias lsd='ls -hGt $@'
-alias lsdr='ls -hGtr $@'
-alias lsi='ls *.{png,jpg,jpeg,gif,bmp} 2>/dev/null'
-alias lsv='ls *.{mp4,avi,mkv} 2>/dev/null'
 alias matlab_clean='matlab -nodesktop -nojvm'
 alias matlab_console='matlab -nodesktop'
 alias osx="cd $HOME/osx-tools"
 alias r='reset'
-alias recent='ls -tr "$@"'
 alias reprofile='source ~/.bash_profile'
 alias src='cd $HOME/src'
 alias unpackall="find . -name \"*.tar.gz\" -exec tar xvf {} \;"
@@ -68,17 +46,7 @@ alias vpn-connect="scutil --nc start $vpn_string"
 alias vpn-disconnect="scutil --nc stop $vpn_string"
 alias wcat="watch cat \"${@}\""
 alias xcode='cd $xcodebuild'
-# from http://natelandau.com/my-mac-osx-bash_profile/
-alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
-alias ..='cd ../'                           # Go back 1 directory level
-alias ...='cd ../../'                       # Go back 2 directory levels
-alias .3='cd ../../../'                     # Go back 3 directory levels
-alias .4='cd ../../../../'                  # Go back 4 directory levels
-alias .5='cd ../../../../../'               # Go back 5 directory levels
-alias .6='cd ../../../../../../'            # Go back 6 directory levels
 alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
-alias ~="cd ~"                              # ~:            Go Home
-alias qfind="find . -name "                 # qfind:    Quickly search for file
 extract () {
     if [ -f $1 ] ; then
         case $1 in
@@ -109,7 +77,7 @@ POWERLINE_BASH_CONTINUATION=1
 POWERLINE_BASH_SELECT=1
 . $repository_root/lib/python/site-packages/powerline/bindings/bash/powerline.sh
 test -e ${HOME}/.iterm2_shell_integration.bash && source ${HOME}/.iterm2_shell_integration.bash
-iterm2-set-color.py Wombat
+iterm2-set-color.py Argonaut
 
 ########################
 # Function Definitions #
@@ -218,3 +186,7 @@ ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in Ma
 mans () {
     man $1 | grep -iC2 --color=always $2 | less
 }
+# brew bash-completion
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+  fi
