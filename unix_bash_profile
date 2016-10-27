@@ -15,7 +15,8 @@ export C_INCLUDE_PATH="$HOME/opt/include:$C_INCLUDE_PATH"
 export LD_LIBRARY_PATH="$HOME/opt/lib:$LD_LIBRARY_PATH"
 export MANPATH="$HOME/opt/doc:$MANPATH"
 export PATH="$HOME/opt/bin:$PATH"
-export PS1="\! [\D{%m/%d/%H:%M:%S}] <\u> "
+export PS1="\[$(tput bold)\]\e[38;5;42m\! \[$(tput sgr0)\]\e[38;5;4m[\D{%m/%d/%H:%M:%S}] \[$(tput bold)\]\e[38;5;223m\u  \e[38;5;7m"
+#export PS1="\! [\D{%m/%d/%H:%M:%S}]\[\033[01;32m\]<\u>  \[\033[0m\]"
 ########################
 # Function Definitions #
 ########################
@@ -27,7 +28,7 @@ function dev() { docker run -it $dev_shell ; }
 function gd() { git diff "$@" ; }
 function gdiff() { git diff "$@" ; }
 function json() { pygmentize -l json "$@" ; }
-function l() { exa -l --git -@ $@ ;  }
+function l() { exa -l --git $@ ;  }
 function la() { exa -a  $@ ;  }
 function ll() { exa -l  $@ ;  }
 function ls() { exa -l --git -@ $@ ;  }
@@ -42,10 +43,12 @@ function push() { git push "$@" ; }
 function s() { git status "$@" ; }
 function shell() { docker run -it $default_shell ; }
 function status() { git status "$@" ; }
-function tree() { exa -l --git -@ -T "$@" ; } 
+function tree() { exa -l --git -T "$@" ; } 
 ###########
 # Aliases #
 ###########
+alias rd='rm -r "$@"'
+alias dud='du -h -d 1'
 alias ...='cd ../../'                       # Go back 2 directory levels
 alias ..='cd ../'                           # Go back 1 directory level
 alias .3='cd ../../../'                     # Go back 3 directory levels
