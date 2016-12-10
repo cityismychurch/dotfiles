@@ -1,8 +1,14 @@
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'wincent/command-t'
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'godlygeek/tabular'
+Plugin 'nvie/vim-flake8'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'tmhedberg/SimpylFold'
 Plugin 'tpope/vim-fugitive'
+Plugin 'vim-scripts/indentpython.vim'
+Plugin 'wincent/command-t'
 call vundle#end()
 execute pathogen#infect()
 source $HOME/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/plugin/powerline.vim
