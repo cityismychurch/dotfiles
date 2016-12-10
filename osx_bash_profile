@@ -4,6 +4,7 @@
 #############
 dot="$HOME/dotfiles"
 HISTCONTROL=ignoreboth
+dropbox="$HOME/Dropbox"
 
 ###########
 # Linking #
@@ -22,12 +23,14 @@ export MANPATH=$MANPATH:/usr/share/man:/usr/local/texlive/2016/texmf-dit/doc/man
 #            -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
 #                -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
 export PATH="$HOME/bin/private:$HOME/osx-tools/osx_bin:/usr/local/sbin:/Users/case/.conda/bin:$PATH"
-export PYTHONPATH=$HOME/code/python:$HOME/src/python:$PYTHONPATH
+# absolutely set PP -- no other exports in script chain
+export PYTHONPATH=$HOME/code/python:$HOME/src/python
 
 ###########
 # Aliases #
 ###########
 alias downloads='cd $downloads'
+alias dropbox='cd $dropbox'
 alias editosxprofile='vim ~/dotfiles/osx_bash_profile'
 alias editprofile='vim ~/.bash_profile'
 alias ejectusb='diskutil eject `diskutil list | grep external | grep -oE "/dev/disk[0-9]"`'
