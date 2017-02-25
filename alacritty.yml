@@ -3,11 +3,11 @@
 # The FreeType rasterizer needs to know the device DPI for best results
 # (changes require restart)
 dpi:
-  x: 96.0
-  y: 96.0
+  x: 227.0
+  y: 227.0
 
 # Display tabs using this many cells (changes require restart)
-tabspaces: 8
+tabspaces: 4
 
 # When true, bold text is drawn using the bright variant of colors.
 draw_bold_text_with_bright_colors: true
@@ -16,24 +16,24 @@ draw_bold_text_with_bright_colors: true
 font:
   # The normal (roman) font face to use.
   normal:
-    family: monospace # should be "Menlo" or something on macOS.
+    family: Liberation Mono for Powerline # should be "Menlo" or something on macOS.
     # Style can be specified to pick a specific face.
     # style: Regular
 
   # The bold font face
   bold:
-    family: monospace # should be "Menlo" or something on macOS.
+    family: Liberation Mono for Powerline # should be "Menlo" or something on macOS.
     # Style can be specified to pick a specific face.
     # style: Bold
 
   # The italic font face
   italic:
-    family: monospace # should be "Menlo" or something on macOS.
+    family: Liberation Mono for Powerline # should be "Menlo" or something on macOS.
     # Style can be specified to pick a specific face.
     # style: Italic
 
   # Point size of the font
-  size: 11.0
+  size: 12.0
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
   offset:
@@ -44,34 +44,35 @@ font:
 render_timer: false
 
 # Colors (Tomorrow Night Bright)
-colors:
-  # Default colors
-  primary:
-    background: '0x000000'
-    foreground: '0xeaeaea'
-
-  # Normal colors
-  normal:
-    black:   '0x000000'
-    red:     '0xd54e53'
-    green:   '0xb9ca4a'
-    yellow:  '0xe6c547'
-    blue:    '0x7aa6da'
-    magenta: '0xc397d8'
-    cyan:    '0x70c0ba'
-    white:   '0x424242'
-
-  # Bright colors
-  bright:
-    black:   '0x666666'
-    red:     '0xff3334'
-    green:   '0x9ec400'
-    yellow:  '0xe7c547'
-    blue:    '0x7aa6da'
-    magenta: '0xb77ee0'
-    cyan:    '0x54ced6'
-    white:   '0x2a2a2a'
-
+#colors:
+#  # Default colors
+#  primary:
+#    background: '0x000000'
+#    #foreground: '0xeaeaea'
+#    foreground: '0x#eeeeee'
+#
+#  # Normal colors
+#  normal:
+#    black:   '0x000000'
+#    red:     '0xd54e53'
+#    green:   '0xb9ca4a'
+#    yellow:  '0xe6c547'
+#    blue:    '0x7aa6da'
+#    magenta: '0xc397d8'
+#    cyan:    '0x70c0ba'
+#    white:   '0x424242'
+#
+#  # Bright colors
+#  bright:
+#    black:   '0x666666'
+#    red:     '0xff3334'
+#    green:   '0x9ec400'
+#    yellow:  '0xe7c547'
+#    blue:    '0x7aa6da'
+#    magenta: '0xb77ee0'
+#    cyan:    '0x54ced6'
+#    white:   '0x2a2a2a'
+#
 # Colors (Solarized Dark)
 # colors:
 #   # Default colors
@@ -100,7 +101,34 @@ colors:
 #     magenta: '0x6c71c4'
 #     cyan:    '0x93a1a1'
 #     white:   '0xfdf6e3'
+# Colors (Tomorrow Night Bright)
+colors:
+  # Default colors
+  primary:
+    background: '0x000000'
+    foreground: '0xeaeaea'
 
+  # Normal colors
+  normal:
+    black:   '0x000000'
+    red:     '0xd54e53'
+    green:   '0xb9ca4a'
+    yellow:  '0xe6c547'
+    blue:    '0x7aa6da'
+    magenta: '0xc397d8'
+    cyan:    '0x70c0ba'
+    white:   '0x424242'
+
+  # Bright colors
+  bright:
+    black:   '0x666666'
+    red:     '0xff3334'
+    green:   '0x9ec400'
+    yellow:  '0xe7c547'
+    blue:    '0x7aa6da'
+    magenta: '0xb77ee0'
+    cyan:    '0x54ced6'
+    white:   '0x2a2a2a'
 # Key bindings
 #
 # Each binding is defined as an object with some properties. Most of the
@@ -197,4 +225,4 @@ mouse_bindings:
 # Shell
 #
 # You can set this to a path to your favorite shell, e.g. /bin/fish
-shell:
+shell: /bin/bash
