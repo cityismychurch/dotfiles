@@ -24,6 +24,7 @@ alias unpackall="find . -name \"*.tar.gz\" -exec tar xvf {} \;"
 alias vpn-connect="scutil --nc start $vpn_string"
 alias vpn-disconnect="scutil --nc stop $vpn_string"
 alias wcat="watch cat \"${@}\""
+alias xcode='cd $HOME/Library/Developer/Xcode/DerivedData/'
 
 # Functions
 # Personal
