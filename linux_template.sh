@@ -1,13 +1,9 @@
-#############
-# Variables #
-#############
+#!/bin/bash
+# Variables
 dot="$HOME/dotfiles"
 HISTCONTROL=ignoreboth
-default_shell=ubuntu
-dev_shell=cityismychurch/builder
-###########
-# Exports #
-###########
+
+# Exports
 export BLOCKSIZE=1k
 export CPLUS_INCLUDE_PATH="$HOME/opt/include:$CPLUS_INCLUDE_PATH"
 export C_INCLUDE_PATH="$HOME/opt/include:$C_INCLUDE_PATH"
@@ -15,10 +11,8 @@ export LD_LIBRARY_PATH="$HOME/opt/lib:$LD_LIBRARY_PATH"
 export MANPATH="$HOME/opt/doc:$MANPATH"
 export PATH="$HOME/opt/bin:$PATH"
 export PS1="\[$(tput bold)\]\e[38;5;42m\! \[$(tput sgr0)\]\e[38;5;4m[\D{%m/%d/%H:%M:%S}] \[$(tput bold)\]\[\e[38;5;223m\]\u \[\e[38;5;7m\]"
-#export PS1="\! [\D{%m/%d/%H:%M:%S}]\[\033[01;32m\]<\u>  \[\033[0m\]"
-########################
-# Function Definitions #
-########################
+
+# Functions
 function a() { git add "$@" ; }
 function add() { git add "$@" ; }
 function c() { git commit -m "$@" ; }
@@ -27,6 +21,13 @@ function dev() { docker run -it $dev_shell ; }
 function gd() { git diff "$@" ; }
 function gdiff() { git diff "$@" ; }
 function json() { pygmentize -l json "$@" ; }
+function p() { git push "$@" ; }
+function push() { git push "$@" ; }
+function s() { git status "$@" ; }
+function shell() { docker run -it $default_shell ; }
+function status() { git status "$@" ; }
+function dud() { du -h -d 1 "$@" ; }
+# Exa installed
 #function l() { exa -l --git $@ ;  }
 #function la() { exa -a  $@ ;  }
 #function ll() { exa -l  $@ ;  }
@@ -37,16 +38,9 @@ function json() { pygmentize -l json "$@" ; }
 #function ltr() { exa -l  -s modified -r $@ ;  }
 #function lz() { exa -l  -s size $@ ;  }
 #function lzr() { exa -l  -s size -r $@ ;  }
-function p() { git push "$@" ; }
-function push() { git push "$@" ; }
-function s() { git status "$@" ; }
-function shell() { docker run -it $default_shell ; }
-function status() { git status "$@" ; }
 #function tree() { exa -l --git -T "$@" ; } 
-function dud() { du -h -d 1 "$@" ; }
-###########
-# Aliases #
-###########
+
+# Aliases
 alias rd='rm -r "$@"'
 alias ...='cd ../../'                       # Go back 2 directory levels
 alias ..='cd ../'                           # Go back 1 directory level
@@ -62,17 +56,6 @@ alias dot="cd $dot"
 alias du='du -h'
 alias dud='du -h -d $1'
 alias editvimprofile="vim $HOME/.vimrc"
-#alias l='ls -CFhG $@'
-#alias la='ls -AhG $@'
-#alias ll='ls -lhG $@'
-#alias lld='ls -lhGt $@'
-#alias lldr='ls -lhGtr $@'
-#alias ls='ls -hG $@'
-#alias lsd='ls -hGt $@'
-#alias lsdr='ls -hGtr $@'
-#alias lsi='ls *.{png,jpg,jpeg,gif,bmp} 2>/dev/null'
-#alias lsv='ls *.{mp4,avi,mkv} 2>/dev/null'
-alias qfind="find . -name "                 # qfind:    Quickly search for file
 alias recent='ls -tr "$@"'
 alias ~="cd ~"                              # ~:            Go Home
 function packthis() { tar cvzf $1.tar.gz $1/. ; }

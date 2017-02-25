@@ -1,55 +1,44 @@
 #!/bin/bash
-#############
-# Variables #
-#############
+# Variables
 dot="$HOME/dotfiles"
+dotprivate="$HOME/dotfilesPrivate"
 HISTCONTROL=ignoreboth
-dropbox="$HOME/Dropbox"
 
-###########
-# Linking #
-###########
+# Linking
 source ~/.profile
-source $HOME/dotfiles/osx_bash_profile_private
+source "$dotprivate/osx_bash_profile"
 
-###########
-# Exports #
-###########
+# Exports
 export EDITOR=/usr/local/bin/vim
-#export LSCOLORS=Dxfxcxdxbxegedabagacad
-export MANPATH=$MANPATH:/usr/share/man:/usr/local/texlive/2016/texmf-dit/doc/man:/usr/local/share/man:/usr/local/man
-#export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
-#        vim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
-#            -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
-#                -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
-export PATH="$HOME/bin/private:$HOME/osx-tools/osx_bin:/usr/local/sbin:/Users/case/.conda/bin:$PATH"
-# absolutely set PP -- no other exports in script chain
-export PYTHONPATH=$HOME/code/python:$HOME/src/python
 
-###########
-# Aliases #
-###########
-alias downloads='cd $downloads'
-alias dropbox='cd $dropbox'
-alias editosxprofile='vim ~/dotfiles/osx_bash_profile'
+# Aliases
+alias ap='git add -p "$@"'
 alias editprofile='vim ~/.bash_profile'
 alias ejectusb='diskutil eject `diskutil list | grep external | grep -oE "/dev/disk[0-9]"`'
-alias gpp='g++ $@'
+alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
 alias krindent='indent -kr -i8 ${@}'
-alias library='cd $library'
-alias matlab_clean='matlab -nodesktop -nojvm'
-alias matlab_console='matlab -nodesktop'
-alias osx="cd $HOME/osx-tools"
 alias r='reset'
 alias reprofile='source ~/.bash_profile'
 alias src='cd $HOME/src'
 alias unpackall="find . -name \"*.tar.gz\" -exec tar xvf {} \;"
-alias vim='/usr/local/bin/vim $@'
 alias vpn-connect="scutil --nc start $vpn_string"
 alias vpn-disconnect="scutil --nc stop $vpn_string"
 alias wcat="watch cat \"${@}\""
-alias xcode='cd $xcodebuild'
-alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
+
+# Functions
+# Personal
+function findfirst(){ find . | grep -i $1 | head -1; }
+function findfirstd(){ find $1 | grep -i $2 | head -1; }
+function findnth(){ find . | grep -i $1 | sed "$2q;d" ; }
+function findnthd(){ find $1 | grep -i $2 | sed "$3q;d" ; }
+function github() { git clone git@github.com:$1.git ; }
+function lsfirst(){ ls | grep -i $1 | head -1; }
+function mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
+function myupdate { softwareupdate -i -a ; brew update && brew upgrade ; }
+function spotlight_rebuild() { sudo mdutil -E $1 ; }
+function trash () { command mv "$@" ~/.Trash ; } # trash: Moves a file to the MacOS trash
+
+# Crowdsource
 extract () {
     if [ -f $1 ] ; then
         case $1 in
@@ -71,131 +60,3 @@ extract () {
     fi
 }
 spotlight () { mdfind "kMDItemDisplayName == '$@'wc"; }
-
-#####################
-# Terminal Settings #
-#####################
-#powerline-daemon -q
-#POWERLINE_BASH_CONTINUATION=1
-#POWERLINE_BASH_SELECT=1
-#. $repository_root/lib/python/site-packages/powerline/bindings/bash/powerline.sh
-test -e ${HOME}/.iterm2_shell_integration.bash && source ${HOME}/.iterm2_shell_integration.bash
-iterm2-set-color.py Argonaut
-
-########################
-# Function Definitions #
-########################
-function spotlight_rebuild()
-{
-    sudo mdutil -E $1
-}
-function github()
-{
-    git clone git@github.com:$1.git
-}
-function myupdate
-{
-    softwareupdate -i -a
-    brew update && brew upgrade
-}
-function extra_lines
-{
-    tmp1="$(mktemp)"
-    tmp2="$(mktemp)"
-    sort <$1 >$tmp1
-    sort <$2 >$tmp2
-    comm -13 $tmp1 $tmp2
-}
-function remote
-{
-    USAGE="Usage: remote [machine id's] command"
-
-    if [ "$#" -lt 2 ]; then
-        echo $USAGE
-        return 1
-    fi
-
-    while (( "$#" - 1 )); do
-        ssh -t "ana@${machines[${1}]}" "${@: -1}"
-        shift
-    done
-}
-function remote_root
-{
-    USAGE="Usage: remote [machine id's] command"
-
-    if [ "$#" -lt 2 ]; then
-        echo $USAGE
-        return 1
-    fi
-
-    while (( "$#" - 1 )); do
-        ssh -t "root@${machines[${1}]}" "${@: -1}"
-        shift
-    done
-}
-# ff:  Find file under the current directory
-ff () { /usr/bin/find . -name "$@" ; }      
-# ffs: Find file whose name starts with a given string
-ffs () { /usr/bin/find . -name "$@"'*' ; }  
-# ffe: Find file whose name ends with a given string
-ffe () { /usr/bin/find . -name '*'"$@" ; }  
-function apl(){ killall afplay >/dev/null; afplay "$1" & }
-function lsfirst(){ ls | grep -i $1 | head -1; }
-function findfirst(){ find . | grep -i $1 | head -1; }
-function findfirstd(){ find $1 | grep -i $2 | head -1; }
-function findnth(){ find . | grep -i $1 | sed "$2q;d" ; }
-function findnthd(){ find $1 | grep -i $2 | sed "$3q;d" ; }
-function m(){ killall afplay >/dev/null; afplay "$(findfirstd $music $1)" & }
-function mm(){ killall afplay >/dev/null; afplay "$(findnthd $music $1 $2)" &}
-function youtube() {
-    pushd .
-    cd $downloads
-    youtube-dl -x --no-check-certificate $1 --audio-format mp3
-    popd
-}
-function pid_for_name() {
-    ps -A | grep $1 | awk '{print $1}'
-}
-function pause_af {
-    kill -17 $(pid_for_name afplay)
-}
-function play_af {
-    kill -19 $(pid_for_name afplay)
-}
-function aplsns() {
-    IFS=$' ';
-    for n in $2; do
-        aplsn $1 $2;
-        wait %1;
-    done;
-} 
-function lsm() { lsn $music $1; }
-function km() { killall afplay; }
-function lsn() {
-    IFS=$'\n';
-    let i=1;
-    for file in `find $1 | grep -i "$2"`; do
-        echo "$i $file $i";
-        let i+=1;
-    done;
-}
-mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
-trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash
-ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
-#   mans:   Search manpage given in agument '1' for term given in argument '2' (case insensitive)
-#           displays paginated result with colored search terms and two lines surrounding each hit.             Example: mans mplayer codec
-#   --------------------------------------------------------------------
-mans () {
-    man $1 | grep -iC2 --color=always $2 | less
-}
-# brew bash-completion
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
-  fi
-
-#########
-# TORCH #
-#########
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-. /Users/case/bin/torch/install/bin/torch-activate

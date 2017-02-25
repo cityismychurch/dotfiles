@@ -1,14 +1,10 @@
 #!/bin/bash
-#############
-# Variables #
-#############
+
+# Variables
 dot="$HOME/dotfiles"
 HISTCONTROL=ignoreboth
-default_shell=ubuntu
-dev_shell=cityismychurch/builder
-###########
-# Exports #
-###########
+
+# Exports
 export BLOCKSIZE=1k
 export CPLUS_INCLUDE_PATH="$HOME/opt/include:$CPLUS_INCLUDE_PATH"
 export C_INCLUDE_PATH="$HOME/opt/include:$C_INCLUDE_PATH"
@@ -16,30 +12,15 @@ export LD_LIBRARY_PATH="$HOME/opt/lib:$LD_LIBRARY_PATH"
 export MANPATH="$HOME/opt/doc:$MANPATH"
 export PATH="$HOME/opt/bin:$PATH"
 export PS1=" \[$(tput bold)\e[38;5;1m\][\[\e[38;5;42m\]\!\[\e[38;5;1m\]] \[$(tput sgr0)\e[38;5;4m\][\D{%m/%d/%H:%M:%S}] \[$(tput bold)\e[38;5;223m\]\h:\w \[\e[38;5;7m\]"
-#export PS1="\! [\D{%m/%d/%H:%M:%S}]\[\033[01;32m\]<\u>  \[\033[0m\]"
-########################
-# Function Definitions #
-########################
-function condaInstall() {
-    installer_dir="$HOME/src/conda"
-    if ! [ -d "$installer_dir" ] ; then
-        mkdir "$installer_dir"
-    fi
-    condaPrefix="$HOME/.conda"
-    installerDestFname="$installer_dir/condaInstall.sh"
-    remote_src="https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh"
-    wget $remote_src -O $installerDestFname
-    chmod +x "$installerDestFname"
-    rm -rf "$condaPrefix"
-    bash "$installerDestFname" -b -p $condaPrefix
-    rm $installerDestFname
-    }
+
+# Functions
 function a() { git add "$@" ; }
 function add() { git add "$@" ; }
 function c() { git commit -m "$@" ; }
 function commit() { git commit -m "$@" ; }
 function dev() { docker run -it $dev_shell ; }
 function dud() { du -h -d 1 "$@" ; }
+function fif() { grep -rnw "$1" -e "$2" ; }
 function gd() { git diff "$@" ; }
 function gdiff() { git diff "$@" ; }
 function json() { pygmentize -l json "$@" ; }
@@ -60,10 +41,8 @@ function shell() { docker run -it $default_shell ; }
 function sl() { ls "$@" ;  }
 function status() { git status "$@" ; }
 function tree() { exa -l --git -T "$@" ; } 
-###########
-# Aliases #
-###########
-alias rd='rm -r "$@"'
+
+# Aliases
 alias ...='cd ../../'                       # Go back 2 directory levels
 alias ..='cd ../'                           # Go back 1 directory level
 alias .3='cd ../../../'                     # Go back 3 directory levels
@@ -76,18 +55,8 @@ alias condaUpdate="conda update --prefix $HOME/.conda/ anaconda"
 alias df="df -h $@"
 alias dot="cd $dot"
 alias du='du -h'
-alias dud='du -h -d $1'
 alias editvimprofile="vim $HOME/.vimrc"
-#alias l='ls -CFhG $@'
-#alias la='ls -AhG $@'
-#alias ll='ls -lhG $@'
-#alias lld='ls -lhGt $@'
-#alias lldr='ls -lhGtr $@'
-#alias ls='ls -hG $@'
-#alias lsd='ls -hGt $@'
-#alias lsdr='ls -hGtr $@'
-#alias lsi='ls *.{png,jpg,jpeg,gif,bmp} 2>/dev/null'
-#alias lsv='ls *.{mp4,avi,mkv} 2>/dev/null'
 alias qfind="find . -name "                 # qfind:    Quickly search for file
+alias rd='rm -r "$@"'
 alias recent='ls -tr "$@"'
 alias ~="cd ~"                              # ~:            Go Home
