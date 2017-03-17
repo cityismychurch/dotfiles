@@ -1,33 +1,62 @@
+" vundle
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'godlygeek/tabular'
-Plugin 'nvie/vim-flake8'
+Plugin 'neomake/neomake'
+" Plugin 'nvie/vim-flake8'
 Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
+" Plugin 'scrooloose/syntastic'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'tpope/vim-fugitive'
+Plugin 'mojodna/vim-conque'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'wincent/command-t'
 call vundle#end()
+
+" pathogen
 execute pathogen#infect()
 source $HOME/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/plugin/powerline.vim
+
+" command t
+set wildignore=*.swp,*.bak,*.pyc,*.class,*.jar,*.gif,*.png,*.jpg
+
+" neomake
+let g:neomake_python_flake8_maker = {
+    \ 'args': ['--ignore=E221,E241,E272,E251,W702,E203,E201,E202',  '--format=default'],
+    \ 'errorformat':
+        \ '%E%f:%l: could not compile,%-Z%p^,' .
+        \ '%A%f:%l:%c: %t%n %m,' .
+        \ '%A%f:%l: %t%n %m,' .
+        \ '%-G%.%#',
+    \ }
+let g:neomake_python_enabled_makers = ['flake8']
+
+" powerline
+let g:Powerline_symbols="fancy"
+
+" Generic
 set encoding=utf-8
 filetype plugin indent on
 syntax on
 let &t_Co=256
+
+" remaps
 command WQ wq
 command Wq wq
 command W w
 command Q q
-autocmd BufEnter *.m compiler mlint
 nnoremap <space> za
 nnoremap Q <nop>
+
+" SimplyFold
 let g:SimpylFold_docstring_preview=1
+
 " YouCompleteMe
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 let g:ycm_autoclose_preview_window_after_completion=1
-"python with virtualenv support
+
+" python with virtualenv support
 py << EOF
 import os
 import sys
@@ -36,14 +65,28 @@ if 'VIRTUAL_ENV' in os.environ:
   activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
   execfile(activate_this, dict(__file__=activate_this))
 EOF
-let g:Powerline_symbols="fancy"
+
+" TODO Move
 let g:rehash256 = 1
 let g:tex_flavor='latex'
 let python_highlight_all=1
+
 " NERDTree
-let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+let NERDTreeIgnore=['\.hdf5$', '\.pyc$', '\.swp$', '\~$'] "ignore files in NERDTree
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+
+" Whitespace
+" Show trailing whitespace:
+" :match ExtraWhitespace /\s\+$/
+" Show trailing whitespace and spaces before a tab:
+" :match ExtraWhitespace /\s\+$\| \+\ze\t/
+" Show trailing whitespace, except when typing at end of line
+:highlight ExtraWhitespace ctermbg=red guibg=red
+:match ExtraWhitespace /\s\+\%#\@<!$/
+:autocmd InsertLeave * redraw!
+
+" Generic
 set colorcolumn=80
 set foldmethod=indent
 set foldlevel=99
