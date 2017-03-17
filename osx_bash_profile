@@ -1,12 +1,12 @@
 #!/bin/bash
-# Variables
-dot="$HOME/dotfiles"
-dotprivate="$HOME/dotfilesPrivate"
-HISTCONTROL=ignoreboth
+# matt weeks github.com/cityismychurch
 
 # Linking
 source ~/.profile
-source "$dotprivate/osx_bash_profile"
+dotprivate="$HOME/dotfilesPrivate"
+private_bash=$dotprivate/osx_bash_profile
+alias editosxprivateprofile="vim $private_bash"
+source "$private_bash"
 
 # Exports
 export EDITOR=/usr/local/bin/vim
@@ -28,16 +28,16 @@ alias xcode='cd $HOME/Library/Developer/Xcode/DerivedData/'
 
 # Functions
 # Personal
-function findfirst(){ find . | grep -i $1 | head -1; }
-function findfirstd(){ find $1 | grep -i $2 | head -1; }
-function findnth(){ find . | grep -i $1 | sed "$2q;d" ; }
-function findnthd(){ find $1 | grep -i $2 | sed "$3q;d" ; }
-function github() { git clone git@github.com:$1.git ; }
-function lsfirst(){ ls | grep -i $1 | head -1; }
-function mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
-function myupdate { softwareupdate -i -a ; brew update && brew upgrade ; }
+function findfirst()         { find .  | grep -i $1 | head -1; }
+function findfirstd()        { find $1 | grep -i $2 | head -1; }
+function findnth()           { find .  | grep -i $1 | sed "$2q;d" ; }
+function findnthd()          { find $1 | grep -i $2 | sed "$3q;d" ; }
+function lsfirst()           { ls      | grep -i $1 | head -1; }
+function github()            { git clone git@github.com:$1.git ; }
+function mcd ()              { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
+function myupdate            { softwareupdate -i -a ; brew update && brew upgrade ; }
 function spotlight_rebuild() { sudo mdutil -E $1 ; }
-function trash () { command mv "$@" ~/.Trash ; } # trash: Moves a file to the MacOS trash
+function trash ()            { command mv "$@" ~/.Trash ; } # trash: Moves a file to the MacOS trash
 
 # Crowdsource
 extract () {
