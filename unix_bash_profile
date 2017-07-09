@@ -11,7 +11,7 @@ export C_INCLUDE_PATH="$HOME/opt/include:$C_INCLUDE_PATH"
 export LD_LIBRARY_PATH="$HOME/opt/lib:$LD_LIBRARY_PATH"
 export MANPATH="$HOME/opt/doc:$MANPATH"
 export PATH="$HOME/opt/bin:$PATH"
-export PS1=" \[$(tput bold)\e[38;5;1m\][\[\e[38;5;42m\]\!\[\e[38;5;1m\]] \[$(tput sgr0)\e[38;5;4m\][\D{%m/%d/%H:%M:%S}] \[$(tput bold)\e[38;5;223m\]\h:\w \[\e[38;5;7m\]"
+#export PS1=" \[$(tput bold)\e[38;5;1m\][\[\e[38;5;42m\]\!\[\e[38;5;1m\]] \[$(tput sgr0)\e[38;5;4m\][\D{%m/%d/%H:%M:%S}] \[$(tput bold)\e[38;5;223m\]\h:\w \[\e[38;5;7m\]"
 
 # Functions
 function a() { git add "$@" ; }
