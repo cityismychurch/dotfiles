@@ -1,18 +1,20 @@
 " vundle
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'godlygeek/tabular'
-Plugin 'neomake/neomake'
 " Plugin 'nvie/vim-flake8'
-Plugin 'scrooloose/nerdtree'
 " Plugin 'scrooloose/syntastic'
+" Plugin 'wincent/command-t'
+Plugin 'felixhummel/setcolors.vim'
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'godlygeek/tabular'
+Plugin 'mojodna/vim-conque'
+Plugin 'neomake/neomake'
+Plugin 'scrooloose/nerdtree'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'tpope/vim-fugitive'
-Plugin 'mojodna/vim-conque'
 Plugin 'vim-scripts/indentpython.vim'
-" Plugin 'wincent/command-t'
-Plugin 'ctrlpvim/ctrlp.vim'
 call vundle#end()
 
 " pathogen
@@ -119,7 +121,8 @@ set shiftwidth=4
 set showcmd
 set softtabstop=4
 set tabstop=4
-colo molokai
+colo gruvbox
+let g:gruvbox_contrast_dark='hard'
 autocmd BufNewFile,BufRead *.json set ft=javascript
 set noesckeys
 set nocompatible
