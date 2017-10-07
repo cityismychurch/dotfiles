@@ -12,6 +12,7 @@ export LD_LIBRARY_PATH="$HOME/opt/lib:$LD_LIBRARY_PATH"
 export MANPATH="$HOME/opt/doc:$MANPATH"
 export PATH="$HOME/opt/bin:$PATH"
 #export PS1=" \[$(tput bold)\e[38;5;1m\][\[\e[38;5;42m\]\!\[\e[38;5;1m\]] \[$(tput sgr0)\e[38;5;4m\][\D{%m/%d/%H:%M:%S}] \[$(tput bold)\e[38;5;223m\]\h:\w \[\e[38;5;7m\]"
+export PS4='+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
 
 # Functions
 function a() { git add "$@" ; }
