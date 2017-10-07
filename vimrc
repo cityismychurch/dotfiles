@@ -21,6 +21,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'airblade/vim-gitgutter'
 call vundle#end()
 
+set tags+=tags;$HOME
 " airline
 let g:airline_powerline_fonts = 1
 
