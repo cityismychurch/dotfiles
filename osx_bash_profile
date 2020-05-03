@@ -2,7 +2,7 @@
 # matt weeks github.com/cityismychurch
 
 # Linking
-source ~/.profile
+#source ~/.profile
 dotprivate="$HOME/dotfilesPrivate"
 private_bash=$dotprivate/osx_bash_profile
 alias editosxprivateprofile="vim $private_bash"
@@ -12,32 +12,31 @@ source "$private_bash"
 export EDITOR=/usr/local/bin/vim
 
 # Aliases
-alias ap='git add -p "$@"'
 alias editprofile='vim ~/.bash_profile'
-alias ejectusb='diskutil eject `diskutil list | grep external | grep -oE "/dev/disk[0-9]"`'
-alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
-alias krindent='indent -kr -i8 ${@}'
+#alias ejectusb='diskutil eject `diskutil list | grep external | grep -oE "/dev/disk[0-9]"`'
+#alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
+#alias krindent='indent -kr -i8 ${@}'
 alias r='reset'
 alias reprofile='source ~/.bash_profile'
 alias src='cd $HOME/src'
-alias unpackall="find . -name \"*.tar.gz\" -exec tar xvf {} \;"
-alias vpn-connect="scutil --nc start $vpn_string"
-alias vpn-disconnect="scutil --nc stop $vpn_string"
-alias wcat="watch cat \"${@}\""
+#alias unpackall="find . -name \"*.tar.gz\" -exec tar xvf {} \;"
+#alias vpn-connect="scutil --nc start $vpn_string"
+#alias vpn-disconnect="scutil --nc stop $vpn_string"
+#alias wcat="watch cat \"${@}\""
 alias xcode='cd $HOME/Library/Developer/Xcode/DerivedData/'
 
 # Functions
 # Personal
-function findfirst()         { find .  | grep -i $1 | head -1; }
-function findfirstd()        { find $1 | grep -i $2 | head -1; }
-function findnth()           { find .  | grep -i $1 | sed "$2q;d" ; }
-function findnthd()          { find $1 | grep -i $2 | sed "$3q;d" ; }
-function lsfirst()           { ls      | grep -i $1 | head -1; }
-function github()            { git clone git@github.com:$1.git ; }
-function mcd ()              { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
+#function findfirst()         { find .  | grep -i $1 | head -1; }
+#function findfirstd()        { find $1 | grep -i $2 | head -1; }
+#function findnth()           { find .  | grep -i $1 | sed "$2q;d" ; }
+#function findnthd()          { find $1 | grep -i $2 | sed "$3q;d" ; }
+#function lsfirst()           { ls      | grep -i $1 | head -1; }
+#function github()            { git clone git@github.com:$1.git ; }
+#function mcd ()              { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
 function myupdate            { softwareupdate -i -a ; brew update && brew upgrade ; }
-function spotlight_rebuild() { sudo mdutil -E $1 ; }
-function trash ()            { command mv "$@" ~/.Trash ; } # trash: Moves a file to the MacOS trash
+#function spotlight_rebuild() { sudo mdutil -E $1 ; }
+#function trash ()            { command mv "$@" ~/.Trash ; } # trash: Moves a file to the MacOS trash
 
 # Crowdsource
 extract () {
