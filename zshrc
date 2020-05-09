@@ -71,6 +71,7 @@ unalias gf gp gco gcm
 gs () { git status "$@" }
 gf () { git fetch "$@" }
 gp () { git pull "$@" }
+gdc () { git diff --cached "$@" }
 gco () { git checkout "$@" }
 gbag () { git branch -a | grep "$@" }
 gcm () { git commit -m "$@" }
