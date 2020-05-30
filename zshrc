@@ -67,7 +67,8 @@ function editvimprofile { vim ~/.vimrc ; }
 function lt () { ls -latrh "$@" ; }
 
 # git
-unalias gf gp gco gcm
+unalias ga gf gp gco gcm
+ga () { git add "$@" }
 gs () { git status "$@" }
 gf () { git fetch "$@" }
 gp () { git pull "$@" }
