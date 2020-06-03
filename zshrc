@@ -77,3 +77,4 @@ gco () { git checkout "$@" }
 gbag () { git branch -a | grep "$@" }
 gcm () { git commit -m "$@" }
 gpo () { git push origin "$@" }
+t () { tmux "$@" ; }
