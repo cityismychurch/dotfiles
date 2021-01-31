@@ -47,6 +47,7 @@ map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 let g:ycm_autoclose_preview_window_after_completion=1
 
 " TODO Move
+colorscheme gruvbox
 let g:rehash256 = 1
 let g:tex_flavor='latex'
 let python_highlight_all=1
