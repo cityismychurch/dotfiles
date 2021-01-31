@@ -1,6 +1,6 @@
 # zsh
 export ZSH="/Users/case/.oh-my-zsh"
-ZSH_THEME=powerlevel10k/powerlevel10k
+export ZSH_THEME=powerlevel10k/powerlevel10k
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 plugins=(git pipenv pyenv)
 source $ZSH/oh-my-zsh.sh
@@ -67,14 +67,14 @@ function editvimprofile { vim ~/.vimrc ; }
 function lt () { ls -latrh "$@" ; }
 
 # git
-unalias ga gf gp gco gcm
-ga () { git add "$@" }
-gs () { git status "$@" }
-gf () { git fetch "$@" }
-gp () { git pull "$@" }
-gdc () { git diff --cached "$@" }
-gco () { git checkout "$@" }
-gbag () { git branch -a | grep "$@" }
-gcm () { git commit -m "$@" }
-gpo () { git push origin "$@" }
-t () { tmux "$@" ; }
+function ga () { git add "$@" }
+function gs () { git status "$@" }
+function gf () { git fetch "$@" }
+function gp () { git pull "$@" }
+function gdc () { git diff --cached "$@" }
+function gco () { git checkout "$@" }
+function gbag () { git branch -a | grep "$@" }
+function gcm () { git commit -m "$@" }
+function gpo () { git push origin "$@" }
+function t () { tmux "$@" ; }
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
