@@ -12,6 +12,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim',
 Plug 'mileszs/ack.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'majutsushi/tagbar'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " 2017-10-20
@@ -143,3 +145,6 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
+
+xmap <leader>t :TagbarToggle<CR>
+nmap <leader>t :TagbarToggle<CR>
