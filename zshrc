@@ -55,11 +55,6 @@ export PATH="$HOME/src/shakti/macos:$PATH"
 export PATH="$HOME/src/kdb/download/m64:$PATH"
 export QHOME=~/src/kdb/download/m64
 
-# python
-export PATH="$PYENV_ROOT/bin:$PATH"
-export PYENV_ROOT="$HOME/.pyenv"
-eval "$(pyenv init -)"
-
 # config
 function editvimprofile { vim ~/.vimrc ; }
 
@@ -68,13 +63,13 @@ function lt () { ls -latrh "$@" ; }
 
 # git
 function ga () { git add "$@" }
-function gs () { git status "$@" }
-function gf () { git fetch "$@" }
-function gp () { git pull "$@" }
-function gdc () { git diff --cached "$@" }
-function gco () { git checkout "$@" }
 function gbag () { git branch -a | grep "$@" }
 function gcm () { git commit -m "$@" }
+function gco () { git checkout "$@" }
+function gdc () { git diff --cached "$@" }
+function gf () { git fetch "$@" }
+function gp () { git pull "$@" }
 function gpo () { git push origin "$@" }
+function gs () { git status "$@" }
 function t () { tmux "$@" ; }
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
